@@ -4,7 +4,7 @@
 
   - Automated mail
   - Server uses a cluster method to split itself across the different CPU's in the hosted environment to mimick the microservice method and not the monolithic method
-  - All data passed to the server are properly validated to ensure they're in the proper format in order to protect the server's violation or consistency rules
+  - All data passed to the server are properly validated to ensure they're in the proper format in order to avoid server's violation and to promote consistency in server delivery
 
 - ## Instructions:
 
