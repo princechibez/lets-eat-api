@@ -1,6 +1,11 @@
 # Let's eat API
 
 - ## Instructions:
+  - Do not PUSH to the main branch for any reason, that's the development branch
+  - Make sure you don't have a bug before pushing
+  - Push to a feature branch and then merge to the develop
+  - If you don't understand this push to the develop or u can communicate to me on whatsapp
+
   - Response should be sent in the format below
   ```
   res.status(statusCode)
