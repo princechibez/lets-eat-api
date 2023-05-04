@@ -8,7 +8,7 @@ const app = require('../app')
 const debug = require('debug')
 debug('post-it-api:server')
 const http = require('http')
-const connectDB = require('../utilities/Database/database')
+const connectDB = require('../utilities/database')
 
 /**
  * Create HTTP server.
