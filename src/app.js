@@ -1,13 +1,25 @@
 const express = require('express')
-const cors = require('cors')
+const cors = require('cors');
+const helmet = require('helmet')
+const compression = require('compression');
+const logger = require('morgan');
+
+const authRoutes = require('./routes/auth.route')
 
 const app = express();
+
+app.use(helmet())
+app.use(compression())
+app.use(logger('dev'))
 
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 // Register all routes below
-app.use("/api/v1/", (req, res) => res.send("Welcome to lets cook API..."))
+app.get("/api/v1", (req, res) => res.send("Welcome to lets cook API..."))
+
+// Authentication route registered here
+app.use('/api/v1', authRoutes)
 
 
 // catch 404 and forward to error handler

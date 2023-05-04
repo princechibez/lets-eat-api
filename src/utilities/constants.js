@@ -10,4 +10,4 @@ const SCHEMAS = {
     COMMENT_SCHEMA: "comment",
 }
 
-exports = { DATABASE, SCHEMAS }
+module.exports = { DATABASE, SCHEMAS }
