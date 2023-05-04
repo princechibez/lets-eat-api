@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const { body } = require("express-validator");
 
-const User = require("../../models/user.model");
+const User = require("../models/user.model");
 
 const LoginValidatorHandler = () => {
   let user;

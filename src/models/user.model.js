@@ -2,9 +2,9 @@ const { model, Schema } = require("mongoose");
 const { SCHEMAS } = require('../utilities/constants');
 
 const userSchema = new Schema({
-    // username: {
-    //     type: String,
-    // },
+    username: {
+        type: String,
+    },
     email: {
         type: String,
         required: true,
