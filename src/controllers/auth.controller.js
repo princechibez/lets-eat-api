@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv/config");
 
 const User = require("../models/user.model");
+const mail_transporter = require("../utilities/automatedMailConfig");
 const avatarGenerator = require("../utilities/generateAvatar");
 
 const SALT_ROUNDS = process.env.SALT_ROUNDS;
@@ -23,7 +24,7 @@ class Auth_Controller {
       }
 
       //   set username to the name on email address
-      // const username = email.split("@")[0];
+      const username = email.split("@")[0];
 
       //   Generate avatar for user's profile picture
       const avatar = await avatarGenerator(email);
@@ -34,7 +35,7 @@ class Auth_Controller {
 
       // create a new user...
       const newUser = new User({
-        // username,
+        username,
         password: hashedPassword,
         profilePicture: avatar,
         email,
@@ -43,10 +44,32 @@ class Auth_Controller {
         expiresIn: "24h",
       });
 
+      // Send an email to the user
+      mail_transporter().sendMail(
+        {
+          from: "lacocina@app.com",
+          to: email,
+          subject: "Welcome to La Cocina",
+          text: `Hello ${username.toUpperCase()}, we are glad to have you here @La Cocina, 
+                we hope you enjoy this application as you explore the wonderfull dishes all over the world`,
+        },
+        (err) => {
+          if (err) {
+            utilityMethods.errorGeneratorMethod(
+              "Couldn't send email, try again..."
+            );
+          }
+          console.log("message sent to email address");
+        }
+      );
+
       (await newUser.save()) &&
-        res
-          .status(200)
-          .json({ message: "user created", data: newUser, token, success: true });
+        res.status(200).json({
+          message: "user created",
+          data: newUser,
+          token,
+          success: true,
+        });
     } catch (err) {
       next(err);
     }
