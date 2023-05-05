@@ -41,4 +41,16 @@ npm install
 npm run dev // To start developement mode
 ```
 
+## Endpoints
+
+### Recipe
+
+- GET `/api/v1/recipe`
+- GET `/api/v1/recipe/:id`
+
+### Auth
+
+- POST `/api/v1/signup`
+- POST `/api/v1/login`
+
 ### Hope you enjoyed. Thank you 👋👋
