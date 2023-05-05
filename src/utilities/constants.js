@@ -1,13 +1,15 @@
-require('dotenv/config');
+require("dotenv/config");
 
 const DATABASE = {
-    MONGO_URI: process.env.MONGO_URI
-}
+  MONGO_URI: process.env.MONGO_URI,
+};
 
 const SCHEMAS = {
-    USER_SCHEMA: "user",
-    POST_SCHEMA: "postit",
-    COMMENT_SCHEMA: "comment",
-}
+  USER_SCHEMA: "user",
+  POST_SCHEMA: "postit",
+  COMMENT_SCHEMA: "comment",
+  RECIPE_SCHEMA: "Recipe",
+  REVIEW_SCHEMA: "review",
+};
 
-module.exports = { DATABASE, SCHEMAS }
+module.exports = { DATABASE, SCHEMAS };
