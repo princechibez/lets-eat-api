@@ -1,11 +1,18 @@
-const { model, Schema } = require("mongoose");
-const { SCHEMAS } = require("../utilities/constants");
+const { model, Schema } = require('mongoose');
+const { SCHEMAS } = require('../utilities/constants');
 
 const ingredientSchema = new Schema({
   name: { type: String, required: true },
   quantity: { type: String, required: true },
-  unit: { type: String, default: "teaspoons" }, // cups, teaspoons,
+  unit: { type: String, default: 'teaspoons' }, // cups, teaspoons,
 });
+
+const reviewSchema = new Schema({
+  author: { type: Schema.Types.ObjectId, required: true},
+  review: { type: String, required: true },
+  rating: { type: Number, min: 0, max: 5, default: 0 },
+});
+
 
 const recipeSchema = new Schema(
   {
@@ -22,6 +29,7 @@ const recipeSchema = new Schema(
     occasions: { type: [String], required: true },
     cuisineType: { type: [String], required: true },
     dishType: { type: [String], required: true },
+    reviews: [reviewSchema]
   },
   { timestamps: true }
 );
