@@ -1,12 +1,14 @@
-const Recipes = require("../models/recipe.model");
+const { getRecipes, getRecipeById } = require('../services/recipe.services');
 
 class Recipe_Controller {
   // get all recipes
   async getAllRecipes(req, res, next) {
+    const search = req.query.search || '';
+
     try {
-      const recipes = await Recipes.find()
-        // .populate({ path: "reviews", select: "rate" })
-        .lean();
+      const recipes = await getRecipes({ 
+        title: { $regex: search, $options: 'i' } 
+      });
 
       //   let recipeRateCount = 0;
       //   recipes.reviews.forEach((rate) => {
@@ -24,6 +26,16 @@ class Recipe_Controller {
       res.status(200).json({ data: transformedRecipes, success: true });
     } catch (err) {
       next(err);
+    }
+  }
+
+  async getSingleRecipe(req, res, next) {
+    try {
+      const recipe = await getRecipeById(req.params.id);
+
+      res.status(200).json({ data: recipe, success: true });
+    } catch (error) {
+      next(error);
     }
   }
 }
