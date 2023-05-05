@@ -9,6 +9,7 @@ const SCHEMAS = {
   POST_SCHEMA: "postit",
   COMMENT_SCHEMA: "comment",
   RECIPE_SCHEMA: "Recipe",
+  REVIEW_SCHEMA: "review",
 };
 
 module.exports = { DATABASE, SCHEMAS };
