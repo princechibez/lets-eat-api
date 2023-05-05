@@ -1,26 +1,40 @@
-const express = require('express')
-const cors = require('cors');
-const helmet = require('helmet')
-const compression = require('compression');
-const logger = require('morgan');
+const express = require("express");
+const cors = require("cors");
+const helmet = require("helmet");
+const compression = require("compression");
+const logger = require("morgan");
 
-const authRoutes = require('./routes/auth.route')
+const authRoutes = require("./routes/auth.route");
+const dbPopulatorRoute = require('./routes/db.populator')
+const recipeRoutes = require('./routes/recipes.route')
 
 const app = express();
 
-app.use(helmet())
-app.use(compression())
-app.use(logger('dev'))
+app.use(helmet());
+app.use(compression());
+app.use(logger("dev"));
 
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: "*",
+    allowedHeaders: "Content-Type, Authorization",
+    methods: "POST, GET, PUT, PATCH, DELETE",
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Register all routes below
-app.get("/api/v1", (req, res) => res.send("Welcome to lets cook API..."))
+app.get("/api/v1", (req, res) => res.send("Welcome to lets cook API..."));
 
 // Authentication route registered here
-app.use('/api/v1', authRoutes)
+app.use("/api/v1", authRoutes);
 
+// populator route
+app.use('/api/v1', dbPopulatorRoute)
+
+// recipe route
+app.use('/api/v1/recipe', recipeRoutes)
 
 // catch 404 and forward to error handler
 app.use((req, res) => {
@@ -36,4 +50,4 @@ app.use((err, req, res, next) => {
 
 // NB: Server listening is not done here, rather in ../bin/www.ts
 
-module.exports = app
+module.exports = app;
