@@ -11,7 +11,7 @@ const getRecipes = async (filter) => {
 
 const getRecipeById = async (id) => {
   try {
-    return await Recipes.findById(id);
+    return await Recipes.findById(id).lean()
   } catch (error) {
     throw { status: 400, message: error.message || "Couldn't fetch data" };
   }

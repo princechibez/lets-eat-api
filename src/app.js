@@ -7,6 +7,7 @@ const logger = require("morgan");
 const authRoutes = require("./routes/auth.route");
 const dbPopulatorRoute = require('./routes/db.populator')
 const recipeRoutes = require('./routes/recipes.route')
+const subscriptionRoutes = require('./routes/subsription.route')
 
 const app = express();
 
@@ -35,6 +36,9 @@ app.use('/api/v1', dbPopulatorRoute)
 
 // recipe route
 app.use('/api/v1/recipe', recipeRoutes)
+
+// recipe route
+app.use('/api/v1', subscriptionRoutes)
 
 // catch 404 and forward to error handler
 app.use((req, res) => {
