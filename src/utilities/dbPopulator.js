@@ -35,13 +35,14 @@ class DB_Populator {
       console.log("fetching recipes...");
       let processedData = [];
       const response = await axios.get(DATA_SOURCE);
+      // return console.log(response.data.hits[0].recipe.image)
       response.data.hits.forEach((element) => {
         const recipe = element.recipe;
         const formattedData = transformData(recipe);
         processedData.push(formattedData);
       });
 
-      processedData.forEach(async (recipe) => {
+      processedData.forEach(async (recipe, i) => {
         try {
           const newRecipe = new Recipe({
             ...recipe,

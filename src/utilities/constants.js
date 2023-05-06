@@ -9,6 +9,7 @@ const SCHEMAS = {
   POST_SCHEMA: "postit",
   COMMENT_SCHEMA: "comment",
   RECIPE_SCHEMA: "Recipe",
+  SAVED_RECIPE: "savedRecipe",
   REVIEW_SCHEMA: "review",
 };
 

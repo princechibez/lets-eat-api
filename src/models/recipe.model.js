@@ -23,4 +23,6 @@ recipeSchema.virtual("reviews", {
   foreignField: "recipeId",
 });
 
+recipeSchema.index({ "$**": "text" }, { default_language: "english"})
+
 module.exports = model(SCHEMAS.RECIPE_SCHEMA, recipeSchema);
