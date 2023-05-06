@@ -10,7 +10,15 @@ class Recipe_Controller {
 
     try {
       const recipes = await getRecipes({
-        title: { $regex: search, $options: "i" },
+        $or: [
+          { title: { $regex: search, $options: "i" } },
+          { healthBenefits: { $regex: search, $options: "i" } },
+          { ingredients: { $regex: search, $options: "i" } },
+          { instructions: { $regex: search, $options: "i" } },
+          { diet: { $regex: search, $options: "i" } },
+          { cuisineType: { $regex: search, $options: "i" } },
+          { dishType: { $regex: search, $options: "i" } },
+        ],
       });
 
       //   let recipeRateCount = 0;
